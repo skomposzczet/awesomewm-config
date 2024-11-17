@@ -24,8 +24,8 @@ local keys = require("keys")
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
+        title = "Oops, there were errors during startup!",
+        text = awesome.startup_errors })
 end
 
 -- Handle runtime errors after startup
@@ -37,8 +37,8 @@ do
         in_error = true
 
         naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = tostring(err) })
+            title = "Oops, an error happened!",
+            text = tostring(err) })
         in_error = false
     end)
 end
@@ -65,17 +65,17 @@ awful.layout.layouts = {
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
+    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+    { "restart", awesome.restart },
+    { "quit", function() awesome.quit() end },
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                  }
-                        })
+}
+})
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+    menu = mymainmenu })
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
@@ -113,10 +113,10 @@ awful.screen.connect_for_each_screen(function(s)
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(gears.table.join(
-                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
-                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+        awful.button({ }, 1, function () awful.layout.inc( 1) end),
+        awful.button({ }, 3, function () awful.layout.inc(-1) end),
+        awful.button({ }, 4, function () awful.layout.inc( 1) end),
+        awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
@@ -154,66 +154,61 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
--- {{{ Mouse bindings
 root.buttons(keys.buttons)
--- }}}
-
--- Set keys
 root.keys(keys.globalkeys)
--- }}}
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = keys.clientkeys,
-                     buttons = keys.clientbuttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
-     }
+        properties = { border_width = beautiful.border_width,
+            border_color = beautiful.border_normal,
+            focus = awful.client.focus.filter,
+            raise = true,
+            keys = keys.clientkeys,
+            buttons = keys.clientbuttons,
+            screen = awful.screen.preferred,
+            placement = awful.placement.no_overlap+awful.placement.no_offscreen
+        }
     },
 
     -- Floating clients.
     { rule_any = {
         instance = {
-          "DTA",  -- Firefox addon DownThemAll.
-          "copyq",  -- Includes session name in class.
-          "pinentry",
+            "DTA",  -- Firefox addon DownThemAll.
+            "copyq",  -- Includes session name in class.
+            "pinentry",
         },
         class = {
-          "Arandr",
-          "Blueman-manager",
-          "Gpick",
-          "Kruler",
-          "MessageWin",  -- kalarm.
-          "Sxiv",
-          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-          "Wpa_gui",
-          "veromix",
-          "xtightvncviewer",
-          "Pavucontrol",
+            "Arandr",
+            "Blueman-manager",
+            "Gpick",
+            "Kruler",
+            "MessageWin",  -- kalarm.
+            "Sxiv",
+            "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+            "Wpa_gui",
+            "veromix",
+            "xtightvncviewer",
+            "Pavucontrol",
         },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
         name = {
-          "Event Tester",  -- xev.
+            "Event Tester",  -- xev.
         },
         role = {
-          "AlarmWindow",  -- Thunderbird's calendar.
-          "ConfigManager",  -- Thunderbird's about:config.
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+            "AlarmWindow",  -- Thunderbird's calendar.
+            "ConfigManager",  -- Thunderbird's about:config.
+            "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
-      }, properties = { floating = true }},
+    }, properties = { floating = true }},
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
+    }, properties = { titlebars_enabled = false }
     },
 }
 -- }}}
@@ -226,8 +221,8 @@ client.connect_signal("manage", function (c)
     -- if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup
-      and not c.size_hints.user_position
-      and not c.size_hints.program_position then
+        and not c.size_hints.user_position
+        and not c.size_hints.program_position then
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
@@ -273,7 +268,5 @@ client.connect_signal("request::titlebars", function(c)
     }
 end)
 
--- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
--- }}}
