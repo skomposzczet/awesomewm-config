@@ -1,0 +1,10 @@
+{
+    "diagnostics.globals": [
+        "set_wallpaper",
+        "awesome",
+        "root",
+        "screen",
+        "client",
+        "tag"
+    ]
+}
