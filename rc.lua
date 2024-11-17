@@ -87,3 +87,5 @@ end)
 
 root.buttons(keys.buttons)
 root.keys(keys.globalkeys)
+
+awful.spawn.with_shell(gears.filesystem.get_xdg_config_home() .. "awesome/startup.sh")
