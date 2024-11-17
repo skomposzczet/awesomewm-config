@@ -16,6 +16,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+local dpi = require("beautiful.xresources").apply_dpi
 
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
@@ -54,7 +55,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
     -- Two tags with firefox icon name wont work with selecting fallback_tag (signals module) on screen remove
-    awful.tag({ " ", "󰈹 ", "󰈹​ ", " ", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ " ", "󰈹 ", "󰈹﻿ ", "󰟞 ", " ", "󰙯 ", " ", "󰊠 ", " " }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
