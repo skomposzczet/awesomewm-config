@@ -3,21 +3,6 @@ local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 
-function set_wallpaper(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
-end
-
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
-
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
@@ -74,32 +59,3 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-
--- screen.connect_signal("removed", awesome.restart)
--- screen.connect_signal("added", awesome.restart)
--- Handle clients when screen is removed
-tag.connect_signal("request::screen", function(t)
-    local fallback_tag
-
-    -- Find tag with same name on any other screen
-    for s in screen do
-        if s ~= t.screen then
-            fallback_tag = awful.tag.find_by_name(s, t.name)
-            if fallback_tag then break end
-        end
-    end
-
-    -- Delete the tag and move clients to other screen
-    -- t:delete(fallback_tag or awful.tag.find_fallback(), true)
-    if fallback_tag then
-        t:swap(fallback_tag)
-    end
-
-    -- Make sure clients are onscreen
-    local clients = fallback_tag:clients() or {}
-    gears.timer.delayed_call(function()
-        for _,c in pairs(clients) do
-            awful.placement.no_offscreen(c)
-        end
-    end)
-end)
