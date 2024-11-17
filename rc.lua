@@ -20,6 +20,7 @@ require("awful.hotkeys_popup.keys")
 local keys = require("keys")
 require("error")
 require("signals")
+require("rules")
 
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
@@ -119,62 +120,6 @@ end)
 
 root.buttons(keys.buttons)
 root.keys(keys.globalkeys)
-
--- {{{ Rules
--- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-        properties = { border_width = beautiful.border_width,
-            border_color = beautiful.border_normal,
-            focus = awful.client.focus.filter,
-            raise = true,
-            keys = keys.clientkeys,
-            buttons = keys.clientbuttons,
-            screen = awful.screen.preferred,
-            placement = awful.placement.no_overlap+awful.placement.no_offscreen
-        }
-    },
-
-    -- Floating clients.
-    { rule_any = {
-        instance = {
-            "DTA",  -- Firefox addon DownThemAll.
-            "copyq",  -- Includes session name in class.
-            "pinentry",
-        },
-        class = {
-            "Arandr",
-            "Blueman-manager",
-            "Gpick",
-            "Kruler",
-            "MessageWin",  -- kalarm.
-            "Sxiv",
-            "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-            "Wpa_gui",
-            "veromix",
-            "xtightvncviewer",
-            "Pavucontrol",
-        },
-
-        -- Note that the name property shown in xprop might be set slightly after creation of the client
-        -- and the name shown there might not match defined rules here.
-        name = {
-            "Event Tester",  -- xev.
-        },
-        role = {
-            "AlarmWindow",  -- Thunderbird's calendar.
-            "ConfigManager",  -- Thunderbird's about:config.
-            "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-        }
-    }, properties = { floating = true }},
-
-    -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" }
-    }, properties = { titlebars_enabled = false }
-    },
-}
--- }}}
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
