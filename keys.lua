@@ -12,7 +12,26 @@ local ctrlkey = "Control"
 local terminal = "wezterm"
 menubar.utils.terminal = terminal
 
+local screenshot_dir = os.getenv("HOME") .. "/Pictures/Screenshots"
+
 keys.globalkeys = gears.table.join(
+    awful.key({ modkey, ctrlkey }, "l", function () awful.util.spawn("loginctl lock-session") end,
+        {description = "lock screen", group = "awesome"}),
+
+    -- Media
+    awful.key({}, "XF86MonBrightnessUp", function () brightness_widget:inc() end,
+        {description = "increase brightness", group = "media"}),
+    awful.key({}, "XF86MonBrightnessDown", function () brightness_widget:dec() end
+        , {description = "decrease brightness", group = "media"}),
+
+    awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn("amixer -c 1 -D default sset Master -M 5%+") end
+        , {description = "increase volume", group = "media"}),
+    awful.key({}, "XF86AudioLowerVolume", function() awful.spawn("amixer -c 1 -D default sset Master -M 5%-") end
+        , {description = "decrease volume", group = "media"}),
+    awful.key({}, "XF86AudioMute", function() awful.spawn("amixer -c 1 -D default sset Master -M toggle") end
+        , {description = "mute/unmute", group = "media"}),
+
+
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
         {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -38,7 +57,7 @@ keys.globalkeys = gears.table.join(
         {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
-    awful.key({ modkey,  shiftkey    }, "j", function () awful.client.swap.byidx(  1)    end,
+    awful.key({ modkey, shiftkey   }, "j", function () awful.client.swap.byidx(  1)    end,
         {description = "swap with next client by index", group = "client"}),
     awful.key({ modkey, shiftkey   }, "k", function () awful.client.swap.byidx( -1)    end,
         {description = "swap with previous client by index", group = "client"}),
@@ -60,7 +79,12 @@ keys.globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
         {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey, ctrlkey }, "r", awesome.restart,
+    awful.key({ modkey,           }, "b", function () awful.spawn("firefox") end,
+        {description = "open a firefox", group = "launcher"}),
+    awful.key({ modkey, ctrlkey }, "r", function()
+        -- save_current_tag()
+        awesome.restart()
+    end,
         {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, shiftkey   }, "q", awesome.quit,
         {description = "quit awesome", group = "awesome"}),
@@ -82,21 +106,17 @@ keys.globalkeys = gears.table.join(
     awful.key({ modkey, shiftkey   }, "space", function () awful.layout.inc(-1)                end,
         {description = "select previous", group = "layout"}),
 
-    awful.key({ modkey, ctrlkey }, "n",
-        function ()
-            local c = awful.client.restore()
-            -- Focus restored client
-            if c then
-                c:emit_signal(
-                    "request::activate", "key.unminimize", {raise = true}
-                )
-            end
-        end,
-        {description = "restore minimized", group = "client"}),
+    awful.key({ modkey },            "r",     function () awful.spawn("rofi -show combi -modes combi -combi-modes \"drun,run\" -show-icons -icon-theme \"Papirus-Dark\"") end,
+        {description = "run rofi", group = "rofi"}),
+    awful.key({ modkey },            "i",     function () awful.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu") end,
+        {description = "run rofi power menu", group = "rofi"}),
+    awful.key({ modkey },            "a",     function () awful.spawn("rofi-pass") end,
+        {description = "run rofi pass", group = "rofi"}),
 
-    -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-        {description = "run prompt", group = "launcher"}),
+    awful.key({},            "Print",     function () awful.spawn("gscreenshot -s -f " .. screenshot_dir) end,
+        {description = "screenshot select", group = "screenshot"}),
+    awful.key({ shiftkey },            "Print",     function () awful.spawn("gscreenshot -f " .. screenshot_dir) end,
+        {description = "screenshot", group = "screenshot"}),
 
     awful.key({ modkey }, "x",
         function ()
@@ -130,31 +150,44 @@ keys.clientkeys = gears.table.join(
         {description = "move to screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
         {description = "toggle keep on top", group = "client"}),
-    awful.key({ modkey,           }, "n",
+
+    -- Minimize / maximize
+    awful.key({ modkey }, "m",
         function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
         end ,
-        {description = "minimize", group = "client"}),
-    awful.key({ modkey,           }, "m",
+        {description = "minimize", group = "client: minimize/maximize"}),
+    awful.key({ modkey }, "n",
+        function ()
+            local c = awful.client.restore()
+            -- Focus restored client
+            if c then
+                c:emit_signal(
+                    "request::activate", "key.unminimize", {raise = true}
+                )
+            end
+        end,
+        {description = "restore minimized", group = "client: minimize/maximize"}),
+    awful.key({ modkey, ctrlkey }, "m",
         function (c)
             c.maximized = not c.maximized
             c:raise()
         end ,
-        {description = "(un)maximize", group = "client"}),
-    awful.key({ modkey, ctrlkey }, "m",
+        {description = "(un)maximize", group = "client: minimize/maximize"}),
+    awful.key({ modkey, ctrlkey }, "n",
         function (c)
             c.maximized_vertical = not c.maximized_vertical
             c:raise()
         end ,
-        {description = "(un)maximize vertically", group = "client"}),
-    awful.key({ modkey, shiftkey   }, "m",
+        {description = "(un)maximize vertically", group = "client: minimize/maximize"}),
+    awful.key({ modkey, shiftkey   }, "n",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c:raise()
         end ,
-        {description = "(un)maximize horizontally", group = "client"})
+        {description = "(un)maximize horizontally", group = "client: minimize/maximize"})
 )
 
 -- Bind all key numbers to tags.
