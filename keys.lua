@@ -9,12 +9,9 @@ local modkey = "Mod4"
 local shiftkey = "Shift"
 local ctrlkey = "Control"
 
--- Menubar configuration
 local terminal = "wezterm"
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
+menubar.utils.terminal = terminal
 
--- {{{ Key bindings
 keys.globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
         {description="show help", group="awesome"}),
