@@ -17,13 +17,14 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- Themes define colours, icons, font and wallpapers.
+beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+require("theme.catppuccin")
+
 local keys = require("keys")
 require("error")
 require("signals")
 require("rules")
-
--- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -46,22 +47,6 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = myma
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
-
-beautiful.wallpaper = gears.filesystem. get_xdg_config_home() .. "wallpaper/wallpaper.png"
-local function set_wallpaper(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
-end
-
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -120,6 +105,3 @@ end)
 
 root.buttons(keys.buttons)
 root.keys(keys.globalkeys)
-
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
