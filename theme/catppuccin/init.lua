@@ -10,10 +10,10 @@ beautiful.useless_gap = dpi(5)
 
 beautiful.taglist_squares_sel = assets_dir .. "/square_sel.png"
 beautiful.taglist_squares_unsel = assets_dir .. "/square_unsel.png"
-beautiful.taglist_font = "Agave-Regular 12.5"
+beautiful.taglist_font = "Agave Nerd Font 14"
 beautiful.taglist_bg_focus = ""
 beautiful.taglist_fg_focus = colors.macchiato.flamingo
-beautiful.taglist_fg_occupied = colors.macchiato.mauve
+beautiful.taglist_fg_occupied = colors.mocha.mauve
 beautiful.taglist_bg_urgent = ""
 beautiful.taglist_fg_urgent = colors.macchiato.green
 
@@ -23,17 +23,29 @@ beautiful.tasklist_align = "left"
 
 beautiful.border_width = 2
 beautiful.border_normal = colors.macchiato.base
-beautiful.border_focus = colors.mocha.mauve
+beautiful.border_focus = colors.mocha.lavender
 
 -- beautiful.titlebar_bg = "#000000"
 
-beautiful.fg_normal = colors.macchiato.subtext0
+beautiful.fg_normal = colors.macchiato.overlay2
 beautiful.fg_focus = colors.macchiato.text
 beautiful.bg_normal = colors.macchiato.crust
-beautiful.bg_focus = colors.macchiato.surface0
+beautiful.bg_focus = beautiful.bg_normal
 beautiful.fg_urgent = colors.mocha.maroon
-beautiful.bg_urgent = colors.mocha.crust
+beautiful.bg_urgent = beautiful.bg_normal
+beautiful.fg_minimize = colors.macchiato.surface1
+beautiful.bg_minimize = beautiful.bg_normal
 
-beautiful.font = "Agave-Regular 11.5"
-beautiful.awesome_icon = assets_dir .. "/logo.png"
+beautiful.bg_systray = beautiful.bg_normal
+
+beautiful.hotkeys_bg = colors.macchiato.mantle
+beautiful.hotkeys_fg = colors.macchiato.subtext0
+beautiful.hotkeys_modifiers_fg = colors.macchiato.subtext0
+beautiful.hotkeys_label_bg = colors.mocha.mauve
+beautiful.hotkeys_label_fg = colors.mocha.base
+beautiful.hotkeys_font = "FiraCode Nerd Font 9"
+beautiful.hotkeys_description_font = "FiraCode Nerd Font 8"
+
+beautiful.font = "Agave Nerd Font 15"
+beautiful.awesome_icon = assets_dir .. "/nixos-logo.png"
 beautiful.wallpaper = gears.filesystem.get_xdg_config_home() .. "wallpaper/wallpaper.png"
