@@ -1,4 +1,5 @@
 local beautiful = require("beautiful")
+require("theme.catppuccin.hotkeys")
 local gears = require("gears")
 local dpi = require("beautiful.xresources").apply_dpi
 local colors = require("theme.catppuccin.colors")
