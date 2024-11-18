@@ -5,6 +5,8 @@
         "root",
         "screen",
         "client",
-        "tag"
+        "tag",
+        "remove_last_tag",
+        "save_current_tag"
     ]
 }
