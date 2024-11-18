@@ -4,6 +4,7 @@ local gears = require("gears")
 local dpi = require("beautiful.xresources").apply_dpi
 local colors = require("theme.catppuccin.colors")
 
+beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 local assets_dir = gears.filesystem.get_xdg_config_home() .. "awesome/theme/catppuccin/assets"
 
