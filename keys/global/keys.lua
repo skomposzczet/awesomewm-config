@@ -1,5 +1,6 @@
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
+require("awful.hotkeys_popup.keys")
 local menubar = require("menubar")
 local mod = require("keys.mod")
 local gears = require("gears")
