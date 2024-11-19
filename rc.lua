@@ -16,6 +16,9 @@ local keys = require("keys")
 require("error")
 require("signals")
 require("rules")
+require("daemon.cpu")
+local cpu = require("widgets.cpu")
+local pipe = require("widgets.pipe")
 
 awful.layout.layouts = {
     awful.layout.suit.tile,
@@ -72,6 +75,9 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            pipe,
+            cpu,
+            pipe,
             mytextclock,
         },
     }
