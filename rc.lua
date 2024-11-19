@@ -78,7 +78,7 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
-root.buttons(keys.buttons)
+root.buttons(keys.globalbuttons)
 root.keys(keys.globalkeys)
 
 local function load_tag()

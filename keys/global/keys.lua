@@ -1,21 +1,10 @@
 local awful = require("awful")
-local gears = require("gears")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local menubar = require("menubar")
+local modkey, shiftkey, ctrlkey, screenshot_dir = table.unpack(require("keys.variables"))
+local gears = require("gears")
 
-local keys = {}
-
-local modkey = "Mod4"
-local shiftkey = "Shift"
-local ctrlkey = "Control"
-
-local terminal = "wezterm"
-menubar.utils.terminal = terminal
-
-local screenshot_dir = os.getenv("HOME") .. "/Pictures/Screenshots"
-
-keys.globalkeys =
-    gears.table.join(
+local keys = gears.table.join(
     awful.key(
         {modkey, ctrlkey},
         "l",
@@ -143,7 +132,7 @@ keys.globalkeys =
         {modkey},
         "Return",
         function()
-            awful.spawn(terminal)
+            awful.spawn(menubar.utils.terminal)
         end,
         {description = "open a terminal", group = "launcher"}
     ),
@@ -292,113 +281,11 @@ keys.globalkeys =
     )
 )
 
-keys.clientkeys =
-    gears.table.join(
-    awful.key(
-        {modkey},
-        "f",
-        function(c)
-            c.fullscreen = not c.fullscreen
-            c:raise()
-        end,
-        {description = "toggle fullscreen", group = "client"}
-    ),
-    awful.key(
-        {modkey, shiftkey},
-        "c",
-        function(c)
-            c:kill()
-        end,
-        {description = "close", group = "client"}
-    ),
-    awful.key(
-        {modkey, ctrlkey},
-        "space",
-        awful.client.floating.toggle,
-        {description = "toggle floating", group = "client"}
-    ),
-    awful.key(
-        {modkey, ctrlkey},
-        "Return",
-        function(c)
-            c:swap(awful.client.getmaster())
-        end,
-        {description = "move to master", group = "client"}
-    ),
-    awful.key(
-        {modkey},
-        "o",
-        function(c)
-            c:move_to_screen()
-        end,
-        {description = "move to screen", group = "client"}
-    ),
-    awful.key(
-        {modkey},
-        "t",
-        function(c)
-            c.ontop = not c.ontop
-        end,
-        {description = "toggle keep on top", group = "client"}
-    ),
-    awful.key(
-        {modkey},
-        "m",
-        function(c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end,
-        {description = "minimize", group = "client: minimize/maximize"}
-    ),
-    awful.key(
-        {modkey},
-        "n",
-        function()
-            local c = awful.client.restore()
-            -- Focus restored client
-            if c then
-                c:emit_signal("request::activate", "key.unminimize", {raise = true})
-            end
-        end,
-        {description = "restore minimized", group = "client: minimize/maximize"}
-    ),
-    awful.key(
-        {modkey, ctrlkey},
-        "m",
-        function(c)
-            c.maximized = not c.maximized
-            c:raise()
-        end,
-        {description = "(un)maximize", group = "client: minimize/maximize"}
-    ),
-    awful.key(
-        {modkey, ctrlkey},
-        "n",
-        function(c)
-            c.maximized_vertical = not c.maximized_vertical
-            c:raise()
-        end,
-        {description = "(un)maximize vertically", group = "client: minimize/maximize"}
-    ),
-    awful.key(
-        {modkey, shiftkey},
-        "n",
-        function(c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c:raise()
-        end,
-        {description = "(un)maximize horizontally", group = "client: minimize/maximize"}
-    )
-)
-
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
-    keys.globalkeys =
-        gears.table.join(
-        keys.globalkeys,
+    keys = gears.table.join(keys,
         awful.key(
             {modkey},
             "#" .. i + 9,
@@ -451,125 +338,5 @@ for i = 1, 9 do
         )
     )
 end
-
-keys.clientbuttons =
-    gears.table.join(
-    awful.button(
-        {},
-        1,
-        function(c)
-            c:emit_signal("request::activate", "mouse_click", {raise = true})
-        end
-    ),
-    awful.button(
-        {modkey},
-        1,
-        function(c)
-            c:emit_signal("request::activate", "mouse_click", {raise = true})
-            awful.mouse.client.move(c)
-        end
-    ),
-    awful.button(
-        {modkey},
-        3,
-        function(c)
-            c:emit_signal("request::activate", "mouse_click", {raise = true})
-            awful.mouse.client.resize(c)
-        end
-    )
-)
-
-keys.taglist_buttons =
-    gears.table.join(
-    awful.button(
-        {},
-        1,
-        function(t)
-            t:view_only()
-        end
-    ),
-    awful.button(
-        {modkey},
-        1,
-        function(t)
-            if client.focus then
-                client.focus:move_to_tag(t)
-            end
-        end
-    ),
-    awful.button({}, 3, awful.tag.viewtoggle),
-    awful.button(
-        {modkey},
-        3,
-        function(t)
-            if client.focus then
-                client.focus:toggle_tag(t)
-            end
-        end
-    ),
-    awful.button(
-        {},
-        4,
-        function(t)
-            awful.tag.viewnext(t.screen)
-        end
-    ),
-    awful.button(
-        {},
-        5,
-        function(t)
-            awful.tag.viewprev(t.screen)
-        end
-    )
-)
-
-keys.tasklist_buttons =
-    gears.table.join(
-    awful.button(
-        {},
-        1,
-        function(c)
-            if c == client.focus then
-                c.minimized = true
-            else
-                c:emit_signal("request::activate", "tasklist", {raise = true})
-            end
-        end
-    ),
-    awful.button(
-        {},
-        3,
-        function()
-            awful.menu.client_list({theme = {width = 250}})
-        end
-    ),
-    awful.button(
-        {},
-        4,
-        function()
-            awful.client.focus.byidx(1)
-        end
-    ),
-    awful.button(
-        {},
-        5,
-        function()
-            awful.client.focus.byidx(-1)
-        end
-    )
-)
-
-keys.buttons =
-    gears.table.join(
-    awful.button(
-        {},
-        3,
-        function()
-            mymainmenu:toggle()
-        end
-    ),
-    awful.button({}, 4, awful.tag.viewnext),
-    awful.button({}, 5, awful.tag.viewprev)
-)
 
 return keys
