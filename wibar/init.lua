@@ -1,31 +1,15 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local beautiful = require("beautiful")
-local hotkeys_popup = require("awful.hotkeys_popup")
 local keys = require("keys")
 local widgets = require("widgets")
+local settings= require("wibar.settings")
 
-awful.layout.layouts = {
-    awful.layout.suit.tile,
-    awful.layout.suit.floating,
-}
-
-myawesomemenu = {
-    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end },
-}
-
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },}})
-
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
-
-mytextclock = wibox.widget.textclock()
+local mytextclock = wibox.widget.textclock()
 
 awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
-    awful.tag({ " ", "󰈹 ", " ", " ", "󰟞 ", "󰒊 ", "󰧞 ", "󰊠 ", " " }, s, awful.layout.layouts[1])
+    awful.tag(settings.tags, s, settings.default_layout)
 
     s.mytaglist = awful.widget.taglist {
         screen  = s,
@@ -49,7 +33,7 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            widgets.misc.launcher,
             s.mytaglist,
             s.mypromptbox,
         },
