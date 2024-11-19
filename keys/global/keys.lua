@@ -1,12 +1,12 @@
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local menubar = require("menubar")
-local modkey, shiftkey, ctrlkey, screenshot_dir = table.unpack(require("keys.variables"))
+local mod = require("keys.mod")
 local gears = require("gears")
 
 local keys = gears.table.join(
     awful.key(
-        {modkey, ctrlkey},
+        {mod.super, mod.ctrl},
         "l",
         function()
             awful.util.spawn("loginctl lock-session")
@@ -54,12 +54,12 @@ local keys = gears.table.join(
         end,
         {description = "mute/unmute", group = "media"}
     ),
-    awful.key({modkey}, "s", hotkeys_popup.show_help, {description = "show help", group = "awesome"}),
-    awful.key({modkey}, "Left", awful.tag.viewprev, {description = "view previous", group = "tag"}),
-    awful.key({modkey}, "Right", awful.tag.viewnext, {description = "view next", group = "tag"}),
-    awful.key({modkey}, "Escape", awful.tag.history.restore, {description = "go back", group = "tag"}),
+    awful.key({mod.super}, "s", hotkeys_popup.show_help, {description = "show help", group = "awesome"}),
+    awful.key({mod.super}, "Left", awful.tag.viewprev, {description = "view previous", group = "tag"}),
+    awful.key({mod.super}, "Right", awful.tag.viewnext, {description = "view next", group = "tag"}),
+    awful.key({mod.super}, "Escape", awful.tag.history.restore, {description = "go back", group = "tag"}),
     awful.key(
-        {modkey},
+        {mod.super},
         "j",
         function()
             awful.client.focus.byidx(1)
@@ -67,7 +67,7 @@ local keys = gears.table.join(
         {description = "focus next by index", group = "client"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "k",
         function()
             awful.client.focus.byidx(-1)
@@ -75,7 +75,7 @@ local keys = gears.table.join(
         {description = "focus previous by index", group = "client"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "w",
         function()
             mymainmenu:show()
@@ -84,7 +84,7 @@ local keys = gears.table.join(
     ),
     -- Layout manipulation
     awful.key(
-        {modkey, shiftkey},
+        {mod.super, mod.shift},
         "j",
         function()
             awful.client.swap.byidx(1)
@@ -92,7 +92,7 @@ local keys = gears.table.join(
         {description = "swap with next client by index", group = "client"}
     ),
     awful.key(
-        {modkey, shiftkey},
+        {mod.super, mod.shift},
         "k",
         function()
             awful.client.swap.byidx(-1)
@@ -100,7 +100,7 @@ local keys = gears.table.join(
         {description = "swap with previous client by index", group = "client"}
     ),
     awful.key(
-        {modkey, ctrlkey},
+        {mod.super, mod.ctrl},
         "j",
         function()
             awful.screen.focus_relative(1)
@@ -108,16 +108,16 @@ local keys = gears.table.join(
         {description = "focus the next screen", group = "screen"}
     ),
     awful.key(
-        {modkey, ctrlkey},
+        {mod.super, mod.ctrl},
         "k",
         function()
             awful.screen.focus_relative(-1)
         end,
         {description = "focus the previous screen", group = "screen"}
     ),
-    awful.key({modkey}, "u", awful.client.urgent.jumpto, {description = "jump to urgent client", group = "client"}),
+    awful.key({mod.super}, "u", awful.client.urgent.jumpto, {description = "jump to urgent client", group = "client"}),
     awful.key(
-        {modkey},
+        {mod.super},
         "Tab",
         function()
             awful.client.focus.history.previous()
@@ -129,7 +129,7 @@ local keys = gears.table.join(
     ),
     -- Standard program
     awful.key(
-        {modkey},
+        {mod.super},
         "Return",
         function()
             awful.spawn(menubar.utils.terminal)
@@ -137,7 +137,7 @@ local keys = gears.table.join(
         {description = "open a terminal", group = "launcher"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "b",
         function()
             awful.spawn("firefox")
@@ -145,7 +145,7 @@ local keys = gears.table.join(
         {description = "open a firefox", group = "launcher"}
     ),
     awful.key(
-        {modkey, ctrlkey},
+        {mod.super, mod.ctrl},
         "r",
         function()
             -- save_current_tag()
@@ -153,9 +153,9 @@ local keys = gears.table.join(
         end,
         {description = "reload awesome", group = "awesome"}
     ),
-    awful.key({modkey, shiftkey}, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
+    awful.key({mod.super, mod.shift}, "q", awesome.quit, {description = "quit awesome", group = "awesome"}),
     awful.key(
-        {modkey},
+        {mod.super},
         "l",
         function()
             awful.tag.incmwfact(0.05)
@@ -163,7 +163,7 @@ local keys = gears.table.join(
         {description = "increase master width factor", group = "layout"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "h",
         function()
             awful.tag.incmwfact(-0.05)
@@ -171,7 +171,7 @@ local keys = gears.table.join(
         {description = "decrease master width factor", group = "layout"}
     ),
     awful.key(
-        {modkey, shiftkey},
+        {mod.super, mod.shift},
         "h",
         function()
             awful.tag.incnmaster(1, nil, true)
@@ -179,7 +179,7 @@ local keys = gears.table.join(
         {description = "increase the number of master clients", group = "layout"}
     ),
     awful.key(
-        {modkey, shiftkey},
+        {mod.super, mod.shift},
         "l",
         function()
             awful.tag.incnmaster(-1, nil, true)
@@ -187,7 +187,7 @@ local keys = gears.table.join(
         {description = "decrease the number of master clients", group = "layout"}
     ),
     awful.key(
-        {modkey, ctrlkey},
+        {mod.super, mod.ctrl},
         "h",
         function()
             awful.tag.incncol(1, nil, true)
@@ -195,7 +195,7 @@ local keys = gears.table.join(
         {description = "increase the number of columns", group = "layout"}
     ),
     awful.key(
-        {modkey, ctrlkey},
+        {mod.super, mod.ctrl},
         "l",
         function()
             awful.tag.incncol(-1, nil, true)
@@ -203,7 +203,7 @@ local keys = gears.table.join(
         {description = "decrease the number of columns", group = "layout"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "space",
         function()
             awful.layout.inc(1)
@@ -211,7 +211,7 @@ local keys = gears.table.join(
         {description = "select next", group = "layout"}
     ),
     awful.key(
-        {modkey, shiftkey},
+        {mod.super, mod.shift},
         "space",
         function()
             awful.layout.inc(-1)
@@ -219,7 +219,7 @@ local keys = gears.table.join(
         {description = "select previous", group = "layout"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "r",
         function()
             awful.spawn('rofi -show combi -modes combi -combi-modes "drun,run" -show-icons -icon-theme "Papirus-Dark"')
@@ -227,7 +227,7 @@ local keys = gears.table.join(
         {description = "run rofi", group = "rofi"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "i",
         function()
             awful.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu")
@@ -235,7 +235,7 @@ local keys = gears.table.join(
         {description = "run rofi power menu", group = "rofi"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "a",
         function()
             awful.spawn("rofi-pass")
@@ -246,20 +246,20 @@ local keys = gears.table.join(
         {},
         "Print",
         function()
-            awful.spawn("gscreenshot -s -f " .. screenshot_dir)
+            awful.spawn("gscreenshot -s -f " .. mod.screenshot_dir)
         end,
         {description = "screenshot select", group = "screenshot"}
     ),
     awful.key(
-        {shiftkey},
+        {mod.shift},
         "Print",
         function()
-            awful.spawn("gscreenshot -f " .. screenshot_dir)
+            awful.spawn("gscreenshot -f " .. mod.screenshot_dir)
         end,
         {description = "screenshot", group = "screenshot"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "x",
         function()
             awful.prompt.run {
@@ -272,7 +272,7 @@ local keys = gears.table.join(
         {description = "lua execute prompt", group = "awesome"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "p",
         function()
             menubar.show()
@@ -287,7 +287,7 @@ local keys = gears.table.join(
 for i = 1, 9 do
     keys = gears.table.join(keys,
         awful.key(
-            {modkey},
+            {mod.super},
             "#" .. i + 9,
             function()
                 local screen = awful.screen.focused()
@@ -299,7 +299,7 @@ for i = 1, 9 do
             {description = "view tag #" .. i, group = "tag"}
         ),
         awful.key(
-            {modkey, ctrlkey},
+            {mod.super, mod.ctrl},
             "#" .. i + 9,
             function()
                 local screen = awful.screen.focused()
@@ -311,7 +311,7 @@ for i = 1, 9 do
             {description = "toggle tag #" .. i, group = "tag"}
         ),
         awful.key(
-            {modkey, shiftkey},
+            {mod.super, mod.shift},
             "#" .. i + 9,
             function()
                 if client.focus then
@@ -324,7 +324,7 @@ for i = 1, 9 do
             {description = "move focused client to tag #" .. i, group = "tag"}
         ),
         awful.key(
-            {modkey, ctrlkey, shiftkey},
+            {mod.super, mod.ctrl, mod.shift},
             "#" .. i + 9,
             function()
                 if client.focus then

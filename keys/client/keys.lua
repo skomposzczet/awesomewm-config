@@ -1,10 +1,10 @@
 local awful = require("awful")
-local modkey, shiftkey, ctrlkey, _ = table.unpack(require("keys.variables"))
+local mod = require("keys.mod")
 local gears = require("gears")
 
 local keys = gears.table.join(
     awful.key(
-        {modkey},
+        {mod.super},
         "f",
         function(c)
             c.fullscreen = not c.fullscreen
@@ -13,7 +13,7 @@ local keys = gears.table.join(
         {description = "toggle fullscreen", group = "client"}
     ),
     awful.key(
-        {modkey, shiftkey},
+        {mod.super, mod.shift},
         "c",
         function(c)
             c:kill()
@@ -21,13 +21,13 @@ local keys = gears.table.join(
         {description = "close", group = "client"}
     ),
     awful.key(
-        {modkey, ctrlkey},
+        {mod.super, mod.ctrl},
         "space",
         awful.client.floating.toggle,
         {description = "toggle floating", group = "client"}
     ),
     awful.key(
-        {modkey, ctrlkey},
+        {mod.super, mod.ctrl},
         "Return",
         function(c)
             c:swap(awful.client.getmaster())
@@ -35,7 +35,7 @@ local keys = gears.table.join(
         {description = "move to master", group = "client"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "o",
         function(c)
             c:move_to_screen()
@@ -43,7 +43,7 @@ local keys = gears.table.join(
         {description = "move to screen", group = "client"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "t",
         function(c)
             c.ontop = not c.ontop
@@ -51,7 +51,7 @@ local keys = gears.table.join(
         {description = "toggle keep on top", group = "client"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "m",
         function(c)
             -- The client currently has the input focus, so it cannot be
@@ -61,7 +61,7 @@ local keys = gears.table.join(
         {description = "minimize", group = "client: minimize/maximize"}
     ),
     awful.key(
-        {modkey},
+        {mod.super},
         "n",
         function()
             local c = awful.client.restore()
@@ -73,7 +73,7 @@ local keys = gears.table.join(
         {description = "restore minimized", group = "client: minimize/maximize"}
     ),
     awful.key(
-        {modkey, ctrlkey},
+        {mod.super, mod.ctrl},
         "m",
         function(c)
             c.maximized = not c.maximized
@@ -82,7 +82,7 @@ local keys = gears.table.join(
         {description = "(un)maximize", group = "client: minimize/maximize"}
     ),
     awful.key(
-        {modkey, ctrlkey},
+        {mod.super, mod.ctrl},
         "n",
         function(c)
             c.maximized_vertical = not c.maximized_vertical
@@ -91,7 +91,7 @@ local keys = gears.table.join(
         {description = "(un)maximize vertically", group = "client: minimize/maximize"}
     ),
     awful.key(
-        {modkey, shiftkey},
+        {mod.super, mod.shift},
         "n",
         function(c)
             c.maximized_horizontal = not c.maximized_horizontal

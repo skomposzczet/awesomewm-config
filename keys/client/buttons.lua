@@ -1,5 +1,5 @@
 local awful = require("awful")
-local modkey, _, _, _ = table.unpack(require("keys.variables"))
+local mod = require("keys.mod")
 local gears = require("gears")
 
 local buttons = gears.table.join(
@@ -11,7 +11,7 @@ local buttons = gears.table.join(
         end
     ),
     awful.button(
-        {modkey},
+        {mod.super},
         1,
         function(c)
             c:emit_signal("request::activate", "mouse_click", {raise = true})
@@ -19,7 +19,7 @@ local buttons = gears.table.join(
         end
     ),
     awful.button(
-        {modkey},
+        {mod.super},
         3,
         function(c)
             c:emit_signal("request::activate", "mouse_click", {raise = true})

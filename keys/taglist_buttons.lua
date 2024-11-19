@@ -1,6 +1,6 @@
 local awful = require("awful")
 local gears = require("gears")
-local modkey, _, _, _ = table.unpack(require("keys.variables"))
+local mod = require("keys.mod")
 
 local taglist_buttons = gears.table.join(
     awful.button(
@@ -11,7 +11,7 @@ local taglist_buttons = gears.table.join(
         end
     ),
     awful.button(
-        {modkey},
+        {mod.super},
         1,
         function(t)
             if client.focus then
@@ -21,7 +21,7 @@ local taglist_buttons = gears.table.join(
     ),
     awful.button({}, 3, awful.tag.viewtoggle),
     awful.button(
-        {modkey},
+        {mod.super},
         3,
         function(t)
             if client.focus then
