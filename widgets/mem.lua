@@ -6,7 +6,7 @@ local values = require("theme.catppuccin.widgets")
 local icon = wibox.widget.textbox()
 icon.font = values.icon_font.." 12.5"
 icon.align = 'center'
-icon.markup = "<span foreground='" .. values.cpu .. "'> </span>"
+icon.markup = "<span foreground='" .. values.mem .. "'> </span>"
 
 local usage = wibox.widget.textbox()
 usage.font = values.text_font .. " 11"
@@ -14,14 +14,14 @@ usage.align = 'center'
 usage.markup = "n/a%"
 
 local function init_set_usage_signal()
-    awesome.connect_signal("signal::cpu", function(cpu_usage)
-        usage.markup = string.format("%d%%", tonumber(cpu_usage))
+    awesome.connect_signal("signal::mem", function(mem_usage)
+        usage.markup = string.format("%d%%", tonumber(mem_usage))
     end)
 end
 
 init_set_usage_signal()
 
-local cpu = wibox.widget {
+local mem = wibox.widget {
     {
         {
             icon,
@@ -38,4 +38,4 @@ local cpu = wibox.widget {
 }
 
 
-return cpu
+return mem

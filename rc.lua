@@ -16,9 +16,11 @@ local keys = require("keys")
 require("error")
 require("signals")
 require("rules")
-require("daemon.cpu")
+require("daemon")
 local cpu = require("widgets.cpu")
+local mem = require("widgets.mem")
 local pipe = require("widgets.pipe")
+local separator = require("widgets.separator")
 
 awful.layout.layouts = {
     awful.layout.suit.tile,
@@ -76,6 +78,8 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             pipe,
+            mem,
+            separator,
             cpu,
             pipe,
             mytextclock,

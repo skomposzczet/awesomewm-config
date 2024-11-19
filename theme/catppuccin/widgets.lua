@@ -5,6 +5,7 @@ local theme = {
     text_font = "FiraCode Nerd Font",
 
     cpu = colors.macchiato.maroon,
+    mem = colors.macchiato.green,
 }
 
 return theme
