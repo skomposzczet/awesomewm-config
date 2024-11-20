@@ -1,8 +1,9 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local keys = require("keys")
 local widgets = require("widgets")
 local settings= require("wibar.settings")
+local create_taglist = require("widgets.taglist")
+local create_tasklist = require("widgets.tasklist")
 
 local mytextclock = wibox.widget.textclock()
 
@@ -11,17 +12,9 @@ awful.screen.connect_for_each_screen(function(s)
 
     awful.tag(settings.tags, s, settings.default_layout)
 
-    s.mytaglist = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = keys.taglist_buttons
-    }
+    s.mytaglist = create_taglist(s)
 
-    s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = keys.tasklist_buttons
-    }
+    s.mytasklist = create_tasklist(s)
 
     s.mywibox = awful.wibar({
         position = "top",
