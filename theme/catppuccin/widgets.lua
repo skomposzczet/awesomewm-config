@@ -44,6 +44,25 @@ local theme = {
             nocharging_glyph = "󰁺 ",
         },
     },
+    vol = {
+        unk = {
+            color = colors.macchiato.text,
+            glyph = "󰕾 ",
+        },
+        mute = {
+            color = colors.macchiato.overlay0,
+            glyph = "󰖁 ",
+        },
+        high = {
+            glyph = "󰕾 ",
+        },
+        medium = {
+            glyph = "󰖀 ",
+        },
+        low = {
+            glyph = "󰕿 ",
+        },
+    },
 
     taglist = {
         color = colors.macchiato.surface1,

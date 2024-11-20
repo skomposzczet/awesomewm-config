@@ -4,6 +4,7 @@ require("awful.hotkeys_popup.keys")
 local menubar = require("menubar")
 local mod = require("keys.mod")
 local gears = require("gears")
+local vol = require("signals.vol")
 
 local keys = gears.table.join(
     awful.key(
@@ -34,25 +35,19 @@ local keys = gears.table.join(
     awful.key(
         {},
         "XF86AudioRaiseVolume",
-        function()
-            awful.spawn("amixer -c 1 -D default sset Master -M 5%+")
-        end,
+        vol.inc,
         {description = "increase volume", group = "media"}
     ),
     awful.key(
         {},
         "XF86AudioLowerVolume",
-        function()
-            awful.spawn("amixer -c 1 -D default sset Master -M 5%-")
-        end,
+        vol.dec,
         {description = "decrease volume", group = "media"}
     ),
     awful.key(
         {},
         "XF86AudioMute",
-        function()
-            awful.spawn("amixer -c 1 -D default sset Master -M toggle")
-        end,
+        vol.mute,
         {description = "mute/unmute", group = "media"}
     ),
     awful.key({mod.super}, "s", hotkeys_popup.show_help, {description = "show help", group = "awesome"}),

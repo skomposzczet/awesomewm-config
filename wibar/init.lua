@@ -27,6 +27,7 @@ awful.screen.connect_for_each_screen(function(s)
         right = {
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            widgets.info.vol,
             widgets.misc.pipe,
             widgets.info.mem,
             widgets.info.cpu,
@@ -38,6 +39,8 @@ awful.screen.connect_for_each_screen(function(s)
         right = {
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            widgets.info.vol,
+            widgets.misc.pipe,
             widgets.info.bat,
             widgets.misc.pipe,
             mytextclock,
