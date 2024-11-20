@@ -22,16 +22,9 @@ awful.screen.connect_for_each_screen(function(s)
         height = 25,
     })
 
-    s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            widgets.misc.launcher,
-            s.mytaglist,
-            s.mypromptbox,
-        },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
+    local right = {}
+    if s == screen.primary then
+        right = {
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             widgets.misc.pipe,
@@ -40,6 +33,26 @@ awful.screen.connect_for_each_screen(function(s)
             widgets.info.bat,
             widgets.misc.pipe,
             mytextclock,
+        }
+    else
+        right = {
+            layout = wibox.layout.fixed.horizontal,
+            wibox.widget.systray(),
+            widgets.info.bat,
+            widgets.misc.pipe,
+            mytextclock,
+        }
+    end
+
+    s.mywibox:setup {
+        layout = wibox.layout.align.horizontal,
+        {
+            layout = wibox.layout.fixed.horizontal,
+            widgets.misc.launcher,
+            s.mytaglist,
+            s.mypromptbox,
         },
+        s.mytasklist,
+        right,
     }
 end)
