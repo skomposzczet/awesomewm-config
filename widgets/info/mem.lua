@@ -1,15 +1,15 @@
 local wibox = require "wibox"
 local beautiful = require "beautiful"
 local dpi = beautiful.xresources.apply_dpi
-local values = require("theme.catppuccin.widgets")
+local theme = require("theme.catppuccin.widgets")
 
 local icon = wibox.widget.textbox()
-icon.font = values.icon_font.." 12.5"
+icon.font = theme.icon.font .. " 12.5"
 icon.align = 'center'
-icon.markup = "<span foreground='" .. values.mem .. "'> </span>"
+icon.markup = "<span foreground='" .. theme.mem.color .. "'> </span>"
 
 local usage = wibox.widget.textbox()
-usage.font = values.text_font .. " 11"
+usage.font = theme.text.font .. " 11"
 usage.align = 'center'
 usage.markup = "n/a%"
 

@@ -1,11 +1,19 @@
 local colors = require("theme.catppuccin.colors")
 
 local theme = {
-    icon_font = "UbuntuMono Nerd Font",
-    text_font = "FiraCode Nerd Font",
+    icon = {
+        font = "UbuntuMono Nerd Font",
+    },
+    text = {
+        font = "FiraCode Nerd Font",
+    },
 
-    cpu = colors.macchiato.maroon,
-    mem = colors.macchiato.green,
+    cpu = {
+        color = colors.macchiato.maroon,
+    },
+    mem = {
+        color = colors.macchiato.green,
+    },
     bat = {
         unk = {
             color = colors.macchiato.lavender,
@@ -37,8 +45,12 @@ local theme = {
         },
     },
 
-    taglist = colors.macchiato.surface1,
-    tasklist = colors.macchiato.surface1,
+    taglist = {
+        color = colors.macchiato.surface1,
+    },
+    tasklist = {
+        color = colors.macchiato.surface1,
+    },
 }
 
 return theme
