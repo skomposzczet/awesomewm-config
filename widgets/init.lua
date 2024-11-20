@@ -7,6 +7,7 @@ local widgets = {
     info = {
         cpu = require("widgets.info.cpu"),
         mem = require("widgets.info.mem"),
+        bat = require("widgets.info.bat"),
     },
 }
 
