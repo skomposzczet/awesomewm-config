@@ -36,6 +36,8 @@ local theme = {
             nocharging_glyph = "󰁺 ",
         },
     },
+
+    taglist = colors.macchiato.surface1,
 }
 
 return theme
