@@ -38,6 +38,7 @@ local theme = {
     },
 
     taglist = colors.macchiato.surface1,
+    tasklist = colors.macchiato.surface1,
 }
 
 return theme

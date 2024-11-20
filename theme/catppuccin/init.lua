@@ -35,7 +35,7 @@ beautiful.bg_normal = colors.macchiato.crust
 beautiful.bg_focus = beautiful.bg_normal
 beautiful.fg_urgent = colors.mocha.maroon
 beautiful.bg_urgent = beautiful.bg_normal
-beautiful.fg_minimize = colors.macchiato.surface1
+beautiful.fg_minimize = colors.macchiato.surface2
 beautiful.bg_minimize = beautiful.bg_normal
 
 beautiful.bg_systray = beautiful.bg_normal
