@@ -78,5 +78,4 @@ local bat = wibox.widget {
     layout = wibox.layout.fixed.horizontal,
 }
 
-
 return bat

@@ -12,7 +12,7 @@ local theme = {
         color = colors.macchiato.maroon,
     },
     mem = {
-        color = colors.macchiato.mauve,
+        color = colors.macchiato.sky,
     },
     bat = {
         unk = {

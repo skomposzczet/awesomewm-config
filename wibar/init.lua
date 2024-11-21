@@ -6,7 +6,7 @@ local util = require("wibar.util")
 local create_taglist = require("widgets.taglist")
 local create_tasklist = require("widgets.tasklist")
 
-local mytextclock = wibox.widget.textclock()
+local mytextclock = wibox.widget.textclock("%a %b %d, %H:%M ")
 
 awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)

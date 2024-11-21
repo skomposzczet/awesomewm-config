@@ -2,7 +2,7 @@ local wibox = require "wibox"
 local theme = require("theme.catppuccin.widgets")
 
 local icon = wibox.widget.textbox()
-icon.font = theme.icon.font .. " 15.5"
+icon.font = theme.icon.font .. " 13.5"
 icon.align = 'center'
 icon.markup = "<span foreground='" .. theme.ght.unk.color .. "'>" .. theme.ght.unk.glyph .. "</span>"
 
@@ -27,13 +27,12 @@ init_set_ght_signal()
 local ght = wibox.widget {
     {
         icon,
-        left = 6,
+        left = 3,
         right = 0,
         layout = wibox.container.margin,
     },
-    forced_width = 30,
+    forced_width = 24,
     layout = wibox.layout.fixed.horizontal,
 }
-
 
 return ght

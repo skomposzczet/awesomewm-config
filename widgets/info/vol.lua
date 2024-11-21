@@ -36,13 +36,12 @@ init_set_vol_signal()
 local vol = wibox.widget {
     {
         icon,
-        left = 6,
+        left = 3,
         right = 0,
         layout = wibox.container.margin,
     },
-    forced_width = 30,
+    forced_width = 24,
     layout = wibox.layout.fixed.horizontal,
 }
-
 
 return vol

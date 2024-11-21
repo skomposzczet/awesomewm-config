@@ -37,5 +37,4 @@ local cpu = wibox.widget {
     layout = wibox.layout.fixed.horizontal,
 }
 
-
 return cpu

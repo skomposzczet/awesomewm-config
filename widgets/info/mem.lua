@@ -37,5 +37,4 @@ local mem = wibox.widget {
     layout = wibox.layout.fixed.horizontal,
 }
 
-
 return mem
