@@ -63,6 +63,21 @@ local theme = {
             glyph = "󰕿 ",
         },
     },
+    ght = {
+        unk = {
+            color = colors.macchiato.text,
+            glyph = "󰳲 ",
+        },
+        high = {
+            glyph = "󰃠 ",
+        },
+        medium = {
+            glyph = "󰃞 ",
+        },
+        low = {
+            glyph = "󰃜 ",
+        },
+    },
 
     taglist = {
         color = colors.macchiato.surface1,

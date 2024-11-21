@@ -2,6 +2,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local widgets = require("widgets")
 local settings= require("wibar.settings")
+local util = require("wibar.util")
 local create_taglist = require("widgets.taglist")
 local create_tasklist = require("widgets.tasklist")
 
@@ -28,6 +29,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             widgets.info.vol,
+            util.is_laptop_screen(s) and widgets.info.ght or nil,
             widgets.misc.pipe,
             widgets.info.mem,
             widgets.info.cpu,
@@ -40,6 +42,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             widgets.info.vol,
+            util.is_laptop_screen(s) and widgets.info.ght or nil,
             widgets.misc.pipe,
             widgets.info.bat,
             widgets.misc.pipe,

@@ -5,6 +5,7 @@ local menubar = require("menubar")
 local mod = require("keys.mod")
 local gears = require("gears")
 local vol = require("signals.vol")
+local ght = require("signals.ght")
 
 local keys = gears.table.join(
     awful.key(
@@ -19,17 +20,13 @@ local keys = gears.table.join(
     awful.key(
         {},
         "XF86MonBrightnessUp",
-        function()
-            brightness_widget:inc()
-        end,
+        ght.inc,
         {description = "increase brightness", group = "media"}
     ),
     awful.key(
         {},
         "XF86MonBrightnessDown",
-        function()
-            brightness_widget:dec()
-        end,
+        ght.dec,
         {description = "decrease brightness", group = "media"}
     ),
     awful.key(
