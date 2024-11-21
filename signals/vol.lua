@@ -15,8 +15,6 @@ local function send_vol_signal()
     end)
 end
 
-send_vol_signal()
-
 local function inc()
     local cmd = "amixer -c 1 -D default sset Master -M 5%+"
     awful.spawn(cmd)
@@ -40,5 +38,18 @@ local vol = {
     dec = dec,
     mute = mute,
 }
+
+local function connect_mute()
+    awesome.connect_signal("signal::vol::mute", function()
+        mute()
+    end)
+end
+
+local function init()
+    send_vol_signal()
+    connect_mute()
+end
+
+init()
 
 return vol
