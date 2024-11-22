@@ -23,9 +23,28 @@ local function dec()
     send_ght_signal()
 end
 
+local function min()
+    local cmd = "xbacklight -set 20"
+    awful.spawn(cmd)
+    send_ght_signal()
+end
+
 local ght = {
     inc = inc,
     dec = dec,
 }
+
+local function connect_mute()
+    awesome.connect_signal("signal::ght::min", function()
+        min()
+    end)
+end
+
+local function init()
+    send_ght_signal()
+    connect_mute()
+end
+
+init()
 
 return ght
