@@ -23,13 +23,18 @@ awful.screen.connect_for_each_screen(function(s)
         height = 25,
     })
 
+    s.widgets = {
+        vol = widgets.info.vol(),
+        ght = util.is_laptop_screen(s) and widgets.info.ght() or { widget = nil },
+    }
+
     local right = {}
     if s == screen.primary then
         right = {
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
-            widgets.info.vol,
-            util.is_laptop_screen(s) and widgets.info.ght or nil,
+            wibox.layout.margin(wibox.widget.systray(), 2, 2, 2, 2),
+            s.widgets.ght.widget,
+            s.widgets.vol.widget,
             widgets.misc.pipe,
             widgets.info.mem,
             widgets.info.cpu,
@@ -41,8 +46,8 @@ awful.screen.connect_for_each_screen(function(s)
         right = {
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            widgets.info.vol,
-            util.is_laptop_screen(s) and widgets.info.ght or nil,
+            s.widgets.ght.widget,
+            s.widgets.vol.widget,
             widgets.misc.pipe,
             widgets.info.bat,
             widgets.misc.pipe,
