@@ -45,6 +45,11 @@ local theme = {
         },
     },
     vol = {
+        fake = {
+            glyph = "󰕾 ",
+            glyph_void = "  ",
+            color = colors.macchiato.overlay0,
+        },
         unk = {
             color = colors.macchiato.text,
             glyph = "󰕾 ",
@@ -60,10 +65,15 @@ local theme = {
             glyph = "󰖀 ",
         },
         low = {
-            glyph = "󰕿 ",
+            glyph = "󰕿  ",
         },
     },
     ght = {
+        fake = {
+            glyph = "󰃠 ",
+            glyph_void = "  ",
+            color = colors.macchiato.overlay0,
+        },
         unk = {
             color = colors.macchiato.text,
             glyph = "󰳲 ",
@@ -75,7 +85,7 @@ local theme = {
             glyph = "󰃞 ",
         },
         low = {
-            glyph = "󰃝 ",
+            glyph = "󰃞 ",
         },
     },
 

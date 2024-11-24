@@ -7,12 +7,16 @@ local Vol = {}
 Vol.__index = Vol
 
 function Vol:update_widget(volume, mute)
+    if volume == nil then return end -- bug
     local color = theme.vol.unk.color
     local glyph = theme.vol.unk.glyph
+    local fake_color = theme.vol.fake.color
+    local fake_glyph = theme.vol.fake.glyph
 
     if mute then
         color = theme.vol.mute.color
         glyph = theme.vol.mute.glyph
+        fake_glyph = theme.vol.fake.glyph_void
     else
         color = theme.vol.unk.color
         if volume > 66 then
@@ -24,6 +28,7 @@ function Vol:update_widget(volume, mute)
         end
     end
     self.icon.markup = "<span foreground='" .. color .. "'>" .. glyph .. "</span>"
+    self.fake.markup = "<span foreground='" .. fake_color .. "'>" .. fake_glyph .. "</span>"
 end
 
 function Vol:connect_signals()
@@ -62,23 +67,31 @@ function Vol:new()
     icon.align = 'center'
     icon.markup = "<span foreground='" .. theme.vol.unk.color .. "'>" .. theme.vol.unk.glyph .. "</span>"
 
+    local fake = wibox.widget.textbox()
+    fake.font = theme.icon.font .. " 15.5"
+    fake.align = 'center'
+    fake.markup = "<span foreground='" .. theme.vol.fake.color .. "'>" .. theme.vol.fake.glyph .. "</span>"
+
     local widget = wibox.widget{
         {
             {
-                widget = icon,
-                id = 'text_role',
+                fake,
+                icon,
+                layout = wibox.layout.stack,
             },
             left = 6,
             right = 3,
+            bottom = 2,
             widget = wibox.container.margin
         },
-        id = 'background_role',
+        forced_width = 30,
         shape = gears.shape.rounded_rect,
         widget = wibox.container.background,
     }
 
     local vol = {
         icon = icon,
+        fake = fake,
         widget = widget,
     }
 
