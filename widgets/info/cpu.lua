@@ -1,12 +1,11 @@
 local wibox = require "wibox"
-local beautiful = require "beautiful"
-local dpi = beautiful.xresources.apply_dpi
+local gears = require("gears")
 local theme = require("theme.catppuccin.widgets")
 
 local icon = wibox.widget.textbox()
 icon.font = theme.icon.font .. " 12.5"
 icon.align = 'center'
-icon.markup = "<span foreground='" .. theme.cpu.color .. "'> </span>"
+icon.markup = "<span foreground='" .. theme.cpu.icon.fg .. "'> </span>"
 
 local usage = wibox.widget.textbox()
 usage.font = theme.text.font .. " 11"
@@ -15,7 +14,7 @@ usage.markup = "n/a%"
 
 local function init_set_usage_signal()
     awesome.connect_signal("signal::cpu", function(cpu_usage)
-        usage.markup = string.format("%d%%", tonumber(cpu_usage))
+        usage.markup = "<span foreground='" .. theme.cpu.text.fg .. "'>" .. cpu_usage .. "%</span>"
     end)
 end
 
@@ -25,15 +24,20 @@ local cpu = wibox.widget {
     {
         {
             icon,
-            usage,
-            spacing = dpi(8),
-            layout = wibox.layout.fixed.horizontal,
+            shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, true, false, false, true) end,
+            bg = theme.cpu.icon.bg,
+            forced_width = 25,
+            widget = wibox.container.background,
         },
-        left = 1,
-        right = 0,
-        layout = wibox.container.margin,
+        {
+            usage,
+            shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, false, true, true, false) end,
+            bg = theme.cpu.text.bg,
+            forced_width = 50,
+            widget = wibox.container.background,
+        },
+        layout = wibox.layout.fixed.horizontal,
     },
-    forced_width = 65,
     layout = wibox.layout.fixed.horizontal,
 }
 

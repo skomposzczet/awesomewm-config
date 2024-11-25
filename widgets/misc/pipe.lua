@@ -1,6 +1,6 @@
 local wibox = require "wibox"
 
 local pipe = wibox.widget.textbox()
-pipe.markup = "| "
+pipe.markup = "|"
 
 return pipe

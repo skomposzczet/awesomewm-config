@@ -9,39 +9,60 @@ local theme = {
     },
 
     cpu = {
-        color = colors.macchiato.maroon,
+        icon = {
+            fg = colors.macchiato.base,
+            bg = colors.macchiato.maroon,
+        },
+        text = {
+            fg = colors.macchiato.maroon,
+            bg = colors.macchiato.surface0 .. "90",
+        },
     },
     mem = {
-        color = colors.macchiato.sky,
+        icon = {
+            fg = colors.macchiato.crust,
+            bg = colors.macchiato.sky,
+        },
+        text = {
+            fg = colors.macchiato.sky,
+            bg = colors.macchiato.surface0 .. "90",
+        },
     },
     bat = {
+        icon = {
+            bg = colors.macchiato.surface0,
+        },
+        text = {
+            fg = colors.macchiato.text,
+            bg = colors.macchiato.surface0 .. "90",
+        },
         unk = {
             color = colors.macchiato.lavender,
             glyph = "󰂑 ",
         },
         max = {
             color = colors.macchiato.green,
-            glyph = "󰁹 ",
+            glyph = " 󰁹 ",
         },
         high = {
             color = colors.macchiato.lavender,
             charging_glyph = "󰂊 ",
-            nocharging_glyph = "󰂂 ",
+            nocharging_glyph = " 󰂂 ",
         },
         medium = {
             color = colors.macchiato.peach,
             charging_glyph = "󰢝 ",
-            nocharging_glyph = "󰁾 ",
+            nocharging_glyph = " 󰁾 ",
         },
         low = {
             color = colors.macchiato.maroon,
             charging_glyph = "󰂇 ",
-            nocharging_glyph = "󰁼 ",
+            nocharging_glyph = " 󰁼 ",
         },
         critical = {
             color = colors.macchiato.red,
             charging_glyph = "󰢜 ",
-            nocharging_glyph = "󰁺 ",
+            nocharging_glyph = " 󰁺 ",
         },
     },
     vol = {
