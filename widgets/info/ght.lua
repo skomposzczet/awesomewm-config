@@ -74,7 +74,7 @@ function Ght:new()
             right = 5,
             widget = wibox.container.margin
         },
-        forced_width = 30,
+        forced_width = 26,
         shape = gears.shape.rounded_rect,
         widget = wibox.container.background,
     }

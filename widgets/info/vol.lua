@@ -79,12 +79,11 @@ function Vol:new()
                 icon,
                 layout = wibox.layout.stack,
             },
-            left = 6,
-            right = 3,
+            left = 4,
             bottom = 2,
             widget = wibox.container.margin
         },
-        forced_width = 30,
+        forced_width = 26,
         shape = gears.shape.rounded_rect,
         widget = wibox.container.background,
     }
