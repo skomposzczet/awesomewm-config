@@ -28,6 +28,17 @@ local theme = {
             bg = colors.macchiato.surface0 .. "90",
         },
     },
+    clk = {
+        icon = {
+            fg = colors.macchiato.surface0,
+            bg = colors.macchiato.mauve,
+        },
+        text = {
+            fg = colors.macchiato.overlay2,
+            bg = colors.macchiato.surface0 .. "90",
+            font = "Agave Nerd Font 15",
+        },
+    },
     bat = {
         icon = {
             bg = colors.macchiato.surface0,
