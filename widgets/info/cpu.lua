@@ -22,21 +22,18 @@ init_set_usage_signal()
 
 local cpu = wibox.widget {
     {
-        {
-            icon,
-            shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, true, false, false, true) end,
-            bg = theme.cpu.icon.bg,
-            forced_width = 25,
-            widget = wibox.container.background,
-        },
-        {
-            usage,
-            shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, false, true, true, false) end,
-            bg = theme.cpu.text.bg,
-            forced_width = 50,
-            widget = wibox.container.background,
-        },
-        layout = wibox.layout.fixed.horizontal,
+        icon,
+        shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, true, false, false, true) end,
+        bg = theme.cpu.icon.bg,
+        forced_width = 25,
+        widget = wibox.container.background,
+    },
+    {
+        usage,
+        shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, false, true, true, false) end,
+        bg = theme.cpu.text.bg,
+        forced_width = 50,
+        widget = wibox.container.background,
     },
     layout = wibox.layout.fixed.horizontal,
 }

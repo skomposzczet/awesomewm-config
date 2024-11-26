@@ -5,7 +5,7 @@ awful.layout.layouts = {
     awful.layout.suit.floating,
 }
 
-local tags = { " ", "󰈹 ", " ", " ", "󰟞 ", " ", " 󰧞 ", "󰊠 ", " " }
+local tags = { " ", "󰈹 ", " ", " ", " ", "󰥠 ", " 󰧞 ", " ", " " }
 
 local settings = {
     tags = tags,

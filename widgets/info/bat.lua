@@ -63,21 +63,18 @@ init_set_usage_signal()
 
 local bat = wibox.widget {
     {
-        {
-            icon,
-            shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, true, false, false, true) end,
-            bg = theme.bat.icon.bg,
-            forced_width = 30,
-            widget = wibox.container.background,
-        },
-        {
-            usage,
-            shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, false, true, true, false) end,
-            bg = theme.bat.text.bg,
-            forced_width = 50,
-            widget = wibox.container.background,
-        },
-        layout = wibox.layout.fixed.horizontal,
+        icon,
+        shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, true, false, false, true) end,
+        bg = theme.bat.icon.bg,
+        forced_width = 30,
+        widget = wibox.container.background,
+    },
+    {
+        usage,
+        shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, false, true, true, false) end,
+        bg = theme.bat.text.bg,
+        forced_width = 50,
+        widget = wibox.container.background,
     },
     layout = wibox.layout.fixed.horizontal,
 }
