@@ -1,3 +1,4 @@
+local awful = require("awful")
 local wibox = require "wibox"
 local gears = require("gears")
 local theme = require("theme.catppuccin.widgets")
@@ -38,8 +39,12 @@ function Vol:connect_signals()
         self:update_widget(volume, mute)
     end)
 
-    self.widget:connect_signal("button::press", function()
-        awesome.emit_signal("signal::vol::mute", nil)
+    self.widget:connect_signal("button::press", function(_, _, _, button)
+        if button == 1 then
+            awesome.emit_signal("signal::vol::mute", nil)
+        elseif button == 3 then
+            awful.spawn("pavucontrol")
+        end
     end)
 
     self.widget:connect_signal("mouse::enter", function()
