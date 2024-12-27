@@ -1,3 +1,4 @@
+os.setlocale(os.getenv("LANG"))
 pcall(require, "luarocks.loader")
 require("awful.autofocus")
 require("theme.catppuccin")
