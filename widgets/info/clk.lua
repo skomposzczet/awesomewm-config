@@ -10,6 +10,13 @@ icon.markup = "<span foreground='" .. theme.clk.icon.fg .. "'> </span>"
 local clock = wibox.widget.textclock("<span foreground='" .. theme.clk.text.fg .. "' font='" .. theme.clk.text.font .."'>%a %b %d, %H:%M</span>")
 clock.font = theme.text.font .. " 11"
 clock.align = 'center'
+local awful = require("awful")
+local myclock_t = awful.tooltip {
+    objects        = { clock},
+    timer_function = function()
+        return os.date("Today is %A %B %d %Y\nThe time is %T")
+    end,
+}
 
 local clk = wibox.widget {
     {

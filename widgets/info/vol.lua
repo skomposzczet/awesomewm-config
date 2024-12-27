@@ -93,6 +93,13 @@ function Vol:new()
         widget = wibox.container.background,
     }
 
+    local vol_tooltip = awful.tooltip {
+    objects        = { widget },
+    timer_function = function()
+        return "Toggle Mute"
+    end,
+}
+
     local vol = {
         icon = icon,
         fake = fake,
