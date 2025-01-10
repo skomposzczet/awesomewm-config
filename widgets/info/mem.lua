@@ -22,20 +22,24 @@ init_set_usage_signal()
 
 local mem = wibox.widget {
     {
-        icon,
-        shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, true, false, false, true) end,
-        bg = theme.mem.icon.bg,
-        forced_width = 25,
-        widget = wibox.container.background,
+        {
+            icon,
+            shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, true, false, false, true) end,
+            bg = theme.mem.icon.bg,
+            forced_width = 25,
+            widget = wibox.container.background,
+        },
+        {
+            usage,
+            shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, false, true, true, false) end,
+            bg = theme.mem.text.bg,
+            forced_width = 50,
+            widget = wibox.container.background,
+        },
+        layout = wibox.layout.fixed.horizontal,
     },
-    {
-        usage,
-        shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, false, true, true, false) end,
-        bg = theme.mem.text.bg,
-        forced_width = 50,
-        widget = wibox.container.background,
-    },
-    layout = wibox.layout.fixed.horizontal,
+    margins = 3,
+    widget = wibox.container.margin,
 }
 
 return mem

@@ -20,20 +20,24 @@ local myclock_t = awful.tooltip {
 
 local clk = wibox.widget {
     {
-        icon,
-        shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, true, false, false, true) end,
-        bg = theme.clk.icon.bg,
-        forced_width = 25,
-        widget = wibox.container.background,
+        {
+            icon,
+            shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, true, false, false, true) end,
+            bg = theme.clk.icon.bg,
+            forced_width = 25,
+            widget = wibox.container.background,
+        },
+        {
+            clock,
+            shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, false, true, true, false) end,
+            bg = theme.clk.text.bg,
+            forced_width = 195,
+            widget = wibox.container.background,
+        },
+        layout = wibox.layout.fixed.horizontal,
     },
-    {
-        clock,
-        shape = function(cr, h, w) gears.shape.partially_rounded_rect(cr, h, w, false, true, true, false) end,
-        bg = theme.clk.text.bg,
-        forced_width = 195,
-        widget = wibox.container.background,
-    },
-    layout = wibox.layout.fixed.horizontal,
+    margins = 3,
+    widget = wibox.container.margin,
 }
 
 return clk
