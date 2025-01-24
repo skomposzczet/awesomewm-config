@@ -35,7 +35,7 @@ awful.rules.rules = {
             "Wpa_gui",
             "veromix",
             "xtightvncviewer",
-            "Pavucontrol",
+            "pavucontrol",
         },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
