@@ -1,6 +1,7 @@
 local wibox = require "wibox"
 local gears = require("gears")
 local theme = require("theme.catppuccin.widgets")
+local Noti = require("theme.catppuccin.notification.noti")
 
 local icon = wibox.widget.textbox()
 icon.font = theme.icon.font.." 12.5"
@@ -12,9 +13,35 @@ usage.font = theme.text.font .. " 11"
 usage.align = 'center'
 usage.markup = "n/a%"
 
+local noti_sent = false
+local noti_threshold = 10
+
+local function send_noti()
+    Noti:new():spawn({
+        app_name = "battery",
+        urgency = "critical",
+        message = "Battery level low < " .. tostring(noti_threshold) .. "%",
+        title = "Battery is dying...",
+    })
+end
+
+local function handle_noti(bat_usage, charging)
+    if bat_usage < noti_threshold and not charging then
+        if not noti_sent then
+            send_noti()
+            noti_sent = true
+        end
+    else
+        noti_sent = false
+    end
+end
+
 local function update_icon(bat_usage, charging)
+    handle_noti(bat_usage, charging)
+
     local color = theme.bat.unk.color
     local glyph = theme.bat.unk.glyph
+
     if bat_usage == 100 then
         color = theme.bat.max.color
         glyph = theme.bat.max.glyph
