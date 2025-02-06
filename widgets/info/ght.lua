@@ -2,6 +2,16 @@ local wibox = require "wibox"
 local gears = require("gears")
 local theme = require("theme.catppuccin.widgets")
 local hover = theme.tasklist
+local Noti = require("theme.catppuccin.notification.noti")
+
+local ght_noti = Noti:new()
+local function notify(level)
+    ght_noti:spawn({
+        app_name = "brightness",
+        message = tostring(level),
+        category = "media",
+    })
+end
 
 local Ght = {}
 Ght.__index = Ght
@@ -25,8 +35,13 @@ function Ght:update_widget(level)
 end
 
 function Ght:connect_signals()
-    awesome.connect_signal("signal::ght", function(level)
+    awesome.connect_signal("signal::ght", function(args)
+        local level = args.level
+        local noti = args.noti
         self:update_widget(level)
+        if noti then
+            notify(level)
+        end
     end)
 
     self.widget:connect_signal("button::press", function()
