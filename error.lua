@@ -16,9 +16,12 @@ do
         if in_error then return end
         in_error = true
 
-        naughty.notify({ preset = naughty.config.presets.critical,
+        naughty.notification({
             title = "Oops, an error happened!",
-            text = tostring(err) })
+            message = tostring(err),
+            urgency = "critical",
+            app_name = "critical",
+        })
         in_error = false
     end)
 end
