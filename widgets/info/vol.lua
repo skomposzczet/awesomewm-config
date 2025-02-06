@@ -3,6 +3,25 @@ local wibox = require "wibox"
 local gears = require("gears")
 local theme = require("theme.catppuccin.widgets")
 local hover = theme.tasklist
+local naughty = require("naughty")
+
+local function notify_todo(args, notif)
+    local n = notif
+    if n then
+        n:destroy()
+    end
+    n = naughty.notification(args)
+    return n
+end
+
+local noti
+local function notify(volume, mute)
+    noti = notify_todo({
+        app_name = not mute and "volume" or "mute",
+        message = tostring(volume),
+        category = "media",
+    }, noti)
+end
 
 local Vol = {}
 Vol.__index = Vol
@@ -36,7 +55,11 @@ function Vol:connect_signals()
     awesome.connect_signal("signal::vol", function(args)
         local volume = args.volume
         local mute = args.mute
+        local noti = args.noti
         self:update_widget(volume, mute)
+        if noti then
+            notify(volume, mute)
+        end
     end)
 
     self.widget:connect_signal("button::press", function(_, _, _, button)

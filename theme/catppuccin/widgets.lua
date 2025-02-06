@@ -97,7 +97,7 @@ local theme = {
             glyph = "󰖀 ",
         },
         low = {
-            glyph = "󰕿  ",
+            glyph = "󰕿   ",
         },
     },
     ght = {
