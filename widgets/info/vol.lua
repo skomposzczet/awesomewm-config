@@ -3,24 +3,15 @@ local wibox = require "wibox"
 local gears = require("gears")
 local theme = require("theme.catppuccin.widgets")
 local hover = theme.tasklist
-local naughty = require("naughty")
+local Noti = require("theme.catppuccin.notification.noti")
 
-local function notify_todo(args, notif)
-    local n = notif
-    if n then
-        n:destroy()
-    end
-    n = naughty.notification(args)
-    return n
-end
-
-local noti
+local vol_noti = Noti:new()
 local function notify(volume, mute)
-    noti = notify_todo({
+    vol_noti:spawn({
         app_name = not mute and "volume" or "mute",
         message = tostring(volume),
         category = "media",
-    }, noti)
+    })
 end
 
 local Vol = {}
