@@ -2,6 +2,7 @@ local wibox = require "wibox"
 local gears = require("gears")
 local theme = require("theme.catppuccin.widgets")
 local Noti = require("theme.catppuccin.notification.noti")
+local helpers = require("helpers")
 
 local icon = wibox.widget.textbox()
 icon.font = theme.icon.font.." 12.5"
@@ -36,9 +37,7 @@ local function handle_noti(bat_usage, charging)
     end
 end
 
-local function update_icon(bat_usage, charging)
-    handle_noti(bat_usage, charging)
-
+local function get_text_props(bat_usage, charging)
     local color = theme.bat.unk.color
     local glyph = theme.bat.unk.glyph
 
@@ -74,7 +73,18 @@ local function update_icon(bat_usage, charging)
             glyph = theme.bat.high.nocharging_glyph
         end
     end
-    icon.markup = "<span foreground='" .. color .. "'> " .. glyph .. "</span>"
+
+    return {color, glyph}
+end
+
+local function set_text(color, glyph)
+    icon.markup = helpers.formatted(glyph, color, nil)
+end
+
+local function update_icon(bat_usage, charging)
+    handle_noti(bat_usage, charging)
+    local color, glyph = table.unpack(get_text_props(bat_usage, charging))
+    set_text(color, glyph)
 end
 
 local function init_set_usage_signal()
