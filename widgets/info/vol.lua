@@ -108,11 +108,11 @@ function Vol:new()
     }
 
     local vol_tooltip = awful.tooltip {
-    objects        = { widget },
-    timer_function = function()
-        return "Toggle Mute"
-    end,
-}
+        objects = { widget },
+        timer_function = function()
+            return "Toggle Mute"
+        end,
+    }
 
     local vol = {
         icon = icon,

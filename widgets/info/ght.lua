@@ -1,3 +1,4 @@
+local awful = require("awful")
 local wibox = require "wibox"
 local gears = require("gears")
 local theme = require("theme.catppuccin.widgets")
@@ -92,6 +93,13 @@ function Ght:new()
         forced_width = 26,
         shape = gears.shape.rounded_rect,
         widget = wibox.container.background,
+    }
+
+    local ght_tooltip = awful.tooltip {
+        objects = { widget },
+        timer_function = function()
+            return "Dim"
+        end,
     }
 
     local ght = {

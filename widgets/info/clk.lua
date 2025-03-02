@@ -13,6 +13,7 @@ clock.align = 'center'
 local awful = require("awful")
 local myclock_t = awful.tooltip {
     objects        = { clock},
+    align = "bottom_left",
     timer_function = function()
         return os.date("Today is %A %B %d %Y\nThe time is %T")
     end,

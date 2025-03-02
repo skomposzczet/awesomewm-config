@@ -3,6 +3,7 @@ local gears = require("gears")
 local theme = require("theme.catppuccin.widgets")
 local Noti = require("theme.catppuccin.notification.noti")
 local helpers = require("helpers")
+local Tooltip = require("widgets.util.tooltip")
 
 local icon = wibox.widget.textbox()
 icon.font = theme.icon.font.." 12.5"
@@ -119,5 +120,9 @@ local bat = wibox.widget {
     margins = 3,
     widget = wibox.container.margin,
 }
+
+local tooltip = Tooltip:new(bat, "acpi")
+tooltip:with_timeout(10)
+tooltip:start()
 
 return bat

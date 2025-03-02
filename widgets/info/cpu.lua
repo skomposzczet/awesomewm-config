@@ -5,7 +5,7 @@ local theme = require("theme.catppuccin.widgets")
 local icon = wibox.widget.textbox()
 icon.font = theme.icon.font .. " 12.5"
 icon.align = 'center'
-icon.markup = "<span foreground='" .. theme.cpu.icon.fg .. "'> </span>"
+icon.markup = "<span foreground='" .. theme.cpu.icon.fg .. "'> </span>"
 
 local usage = wibox.widget.textbox()
 usage.font = theme.text.font .. " 11"
