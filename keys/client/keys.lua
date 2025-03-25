@@ -13,8 +13,8 @@ local keys = gears.table.join(
         {description = "toggle fullscreen", group = "client"}
     ),
     awful.key(
-        {mod.super, mod.shift},
-        "c",
+        {mod.super},
+        "q",
         function(c)
             c:kill()
         end,
@@ -98,6 +98,12 @@ local keys = gears.table.join(
             c:raise()
         end,
         {description = "(un)maximize horizontally", group = "client: minimize/maximize"}
+    ),
+    awful.key(
+        {mod.super},
+        "t",
+        awful.titlebar.toggle,
+        {description = "Show/Hide titlebar", group="client"}
     )
 )
 
