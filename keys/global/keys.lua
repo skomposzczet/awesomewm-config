@@ -271,6 +271,18 @@ local keys = gears.table.join(
             menubar.show()
         end,
         {description = "show the menubar", group = "launcher"}
+    ),
+    awful.key(
+        {mod.super},
+        "n",
+        function()
+            local c = awful.client.restore()
+            -- Focus restored client
+            if c then
+                c:emit_signal("request::activate", "key.unminimize", {raise = true})
+            end
+        end,
+        {description = "restore minimized", group = "client: minimize/maximize"}
     )
 )
 

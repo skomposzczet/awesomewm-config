@@ -61,18 +61,6 @@ local keys = gears.table.join(
         {description = "minimize", group = "client: minimize/maximize"}
     ),
     awful.key(
-        {mod.super},
-        "n",
-        function()
-            local c = awful.client.restore()
-            -- Focus restored client
-            if c then
-                c:emit_signal("request::activate", "key.unminimize", {raise = true})
-            end
-        end,
-        {description = "restore minimized", group = "client: minimize/maximize"}
-    ),
-    awful.key(
         {mod.super, mod.ctrl},
         "m",
         function(c)
