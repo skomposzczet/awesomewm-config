@@ -36,7 +36,7 @@ local theme = {
         text = {
             fg = colors.macchiato.overlay2,
             bg = colors.macchiato.surface0 .. "90",
-            font = "Agave Nerd Font 15",
+            font = "UbuntuMono Nerd Font 15",
         },
     },
     bat = {

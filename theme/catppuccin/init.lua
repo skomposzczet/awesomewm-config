@@ -49,6 +49,6 @@ beautiful.hotkeys_label_fg = colors.mocha.base
 beautiful.hotkeys_font = "FiraCode Nerd Font 9"
 beautiful.hotkeys_description_font = "FiraCode Nerd Font 8"
 
-beautiful.font = "Agave Nerd Font 15"
+beautiful.font = "Overpass Nerd Font 15"
 beautiful.awesome_icon = assets_dir .. "/nixos-logo.png"
 beautiful.wallpaper = gears.filesystem.get_xdg_config_home() .. "wallpaper/wallpaper.png"
