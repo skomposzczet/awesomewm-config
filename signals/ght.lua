@@ -1,11 +1,26 @@
 local awful = require "awful"
+local logger = require("logger")
 
-local function send_ght_signal(noti)
+local DELTA = "delta"
+local SET = "set"
+
+local DELTA_VAL = 5
+local SET_VAL = 20
+
+local function send_ght_signal(mode, value, noti)
     local cmd = "xbacklight -get"
 
     awful.spawn.easy_async_with_shell(cmd, function(level)
+        local lvl = tonumber(level)
+        if mode == DELTA then
+            lvl = lvl + value
+        elseif mode == SET then
+            lvl = value
+        else
+            logger.log("light changed with incorrect mode: " .. mode .. "; noti current")
+        end
         local args = {
-            level = tonumber(level),
+            level = lvl,
             noti = noti,
         }
         awesome.emit_signal("signal::ght", args)
@@ -15,21 +30,21 @@ end
 send_ght_signal()
 
 local function inc()
-    local cmd = "xbacklight -inc 5"
+    send_ght_signal(DELTA, DELTA_VAL, true)
+    local cmd = "xbacklight -inc " .. DELTA_VAL .. " -time 500 -steps 60"
     awful.spawn(cmd)
-    send_ght_signal(true)
 end
 
 local function dec()
-    local cmd = "xbacklight -dec 5"
+    send_ght_signal(DELTA, -DELTA_VAL, true)
+    local cmd = "xbacklight -dec " .. DELTA_VAL .. " -time 500 -steps 60"
     awful.spawn(cmd)
-    send_ght_signal(true)
 end
 
 local function min()
-    local cmd = "xbacklight -set 20"
+    send_ght_signal(SET, SET_VAL, true)
+    local cmd = "xbacklight -set " .. SET_VAL .. " -time 500 -steps 60"
     awful.spawn(cmd)
-    send_ght_signal(true)
 end
 
 local ght = {
