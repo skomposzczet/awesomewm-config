@@ -1,5 +1,6 @@
 local awful = require("awful")
 local gears = require("gears")
+local logger = require("logger")
 
 -- Handle clients when screen is removed
 tag.connect_signal("request::screen", function(t)
@@ -7,7 +8,9 @@ tag.connect_signal("request::screen", function(t)
 
     -- Find tag with same name on any other screen
     for s in screen do
+        logger.log(s)
         if s ~= t.screen then
+            logger.log("entered")
             fallback_tag = awful.tag.find_by_name(s, t.name)
             if fallback_tag then break end
         end
