@@ -233,7 +233,7 @@ local keys = gears.table.join(
     ),
     awful.key(
         {mod.super},
-        "c",
+        "u",
         function()
             awful.spawn('rofi -show calc -modi calc -no-show-match -no-sort -no-history -hint-welcome "" -theme ' .. rofi_cfg_dir .. '/calc.rasi')
         end,
