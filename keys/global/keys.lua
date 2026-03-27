@@ -7,6 +7,8 @@ local gears = require("gears")
 local vol = require("signals.vol")
 local ght = require("signals.ght")
 
+local rofi_cfg_dir = "~/.config/rofi"
+
 local keys = gears.table.join(
     awful.key(
         {mod.super, mod.ctrl},
@@ -102,7 +104,7 @@ local keys = gears.table.join(
     ),
     awful.key({mod.super}, "u", awful.client.urgent.jumpto, {description = "jump to urgent client", group = "client"}),
     awful.key(
-        {mod.super},
+        {mod.super, mod.shift},
         "Tab",
         function()
             awful.client.focus.history.previous()
@@ -203,11 +205,13 @@ local keys = gears.table.join(
         end,
         {description = "select previous", group = "layout"}
     ),
+
+    -- Rofi
     awful.key(
         {mod.super},
         "r",
         function()
-            awful.spawn('rofi -show combi -modes combi -combi-modes "drun,run" -show-icons -icon-theme "Papirus-Dark"')
+            awful.spawn('rofi -show drun -show-icons -icon-theme "Papirus-Dark" -theme ' .. rofi_cfg_dir .. '/balanced.rasi')
         end,
         {description = "run rofi", group = "rofi"}
     ),
@@ -215,18 +219,35 @@ local keys = gears.table.join(
         {mod.super},
         "i",
         function()
-            awful.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu")
+            awful.spawn('rofi -show power-menu -modi power-menu:rofi-power-menu -theme ' .. rofi_cfg_dir .. '/modest.rasi')
         end,
         {description = "run rofi power menu", group = "rofi"}
     ),
     awful.key(
         {mod.super},
-        "a",
+        "Tab",
         function()
-            awful.spawn("rofi-pass")
+            awful.spawn('rofi -show window -theme ' .. rofi_cfg_dir .. '/elated.rasi')
         end,
-        {description = "run rofi pass", group = "rofi"}
+        {description = "run rofi window", group = "rofi"}
     ),
+    awful.key(
+        {mod.super},
+        "c",
+        function()
+            awful.spawn('rofi -show calc -modi calc -no-show-match -no-sort -no-history -hint-welcome "" -theme ' .. rofi_cfg_dir .. '/calc.rasi')
+        end,
+        {description = "run rofi calc", group = "rofi"}
+    ),
+    -- awful.key(
+    --     {mod.super},
+    --     "a",
+    --     function()
+    --         awful.spawn("rofi-pass")
+    --     end,
+    --     {description = "run rofi pass", group = "rofi"}
+    -- ),
+
     awful.key(
         {},
         "Print",
