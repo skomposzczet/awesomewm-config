@@ -33,7 +33,6 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.layout.margin(wibox.widget.systray(), 2, 2, 2, 2),
             s.widgets.ght.widget,
             s.widgets.vol.widget,
-            widgets.misc.pipe,
             widgets.info.mem,
             widgets.info.cpu,
             widgets.info.bat,
@@ -45,7 +44,6 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             s.widgets.ght.widget,
             s.widgets.vol.widget,
-            widgets.misc.pipe,
             widgets.info.bat,
             widgets.info.clk,
         }

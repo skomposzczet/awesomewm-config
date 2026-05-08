@@ -17,7 +17,7 @@ local myclock_t = awful.tooltip {
     objects        = { clock},
     align = "bottom_left",
     timer_function = function()
-        return os.date("Today is %A %B %d %Y\nThe time is %T")
+        return os.date("%T")
     end,
 }
 
