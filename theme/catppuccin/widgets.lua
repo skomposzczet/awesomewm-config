@@ -127,10 +127,10 @@ local theme = {
     },
 
     taglist = {
-        color = colors.macchiato.surface1,
+        color = colors.mocha.base,
     },
     tasklist = {
-        color = colors.macchiato.surface1,
+        color = colors.mocha.base,
     },
 }
 

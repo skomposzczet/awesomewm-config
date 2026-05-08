@@ -10,6 +10,8 @@ local assets_dir = gears.filesystem.get_xdg_config_home() .. "awesome/theme/catp
 
 beautiful.useless_gap = dpi(5)
 
+-- beautiful.wibar_bg = colors.mocha.crust
+
 beautiful.taglist_squares_sel = assets_dir .. "/square_sel.png"
 beautiful.taglist_squares_unsel = assets_dir .. "/square_unsel.png"
 beautiful.taglist_font = "Agave Nerd Font 14"
@@ -23,16 +25,20 @@ beautiful.taglist_fg_urgent = colors.macchiato.green
 beautiful.tasklist_disable_icon = true
 beautiful.tasklist_plain_task_name = true
 beautiful.tasklist_align = "left"
+beautiful.tasklist_bg_normal = ""
+beautiful.tasklist_bg_focus = ""
+beautiful.tasklist_bg_urgent = ""
+beautiful.tasklist_bg_minimize = ""
 
-beautiful.border_width = 2
+beautiful.border_width = 1
 beautiful.border_normal = colors.macchiato.base
-beautiful.border_focus = colors.mocha.lavender
+beautiful.border_focus = colors.mocha.mauve
 
 -- beautiful.titlebar_bg = "#000000"
 
 beautiful.fg_normal = colors.macchiato.overlay2
 beautiful.fg_focus = colors.macchiato.text
-beautiful.bg_normal = colors.macchiato.crust
+beautiful.bg_normal = colors.mocha.crust
 beautiful.bg_focus = beautiful.bg_normal
 beautiful.fg_urgent = colors.mocha.maroon
 beautiful.bg_urgent = beautiful.bg_normal
@@ -52,3 +58,6 @@ beautiful.hotkeys_description_font = "FiraCode Nerd Font 8"
 beautiful.font = "Overpass Nerd Font 15"
 beautiful.awesome_icon = assets_dir .. "/nixos-logo.png"
 beautiful.wallpaper = gears.filesystem.get_xdg_config_home() .. "wallpaper/wallpaper.png"
+beautiful.wallpaper = "/home/d3rfnam/Downloads/train.jpg"
+beautiful.wallpaper = "/home/d3rfnam/Downloads/green2.jpg"
+

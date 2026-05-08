@@ -75,7 +75,7 @@ function Ght:new()
     icon.markup = "<span foreground='" .. theme.ght.unk.color .. "'>" .. theme.ght.unk.glyph .. "</span>"
 
     local fake = wibox.widget.textbox()
-    fake.font = theme.icon.font .. " 13.5"
+    fake.font = theme.icon.font .. " 12.5"
     fake.align = 'center'
     fake.markup = "<span foreground='" .. theme.ght.fake.color .. "'>" .. theme.ght.fake.glyph .. "</span>"
 
