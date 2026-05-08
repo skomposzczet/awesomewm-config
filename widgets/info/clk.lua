@@ -1,3 +1,4 @@
+local calendar_widget = require("popups.cal")
 local wibox = require "wibox"
 local gears = require("gears")
 local theme = require("theme.catppuccin.widgets")
@@ -64,5 +65,17 @@ local clk = wibox.widget {
     margins = 3,
     widget = wibox.container.margin,
 }
+
+local cw = calendar_widget({
+    theme = 'naughty',
+    placement = 'top_right',
+    radius = 0,
+    previous_month_button = 2,
+    next_month_button = 1,
+})
+clk:connect_signal("button::press",
+    function(_, _, _, button)
+        if button == 1 then cw.toggle() end
+    end)
 
 return clk
