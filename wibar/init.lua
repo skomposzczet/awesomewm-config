@@ -13,7 +13,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     s.mytaglist = create_taglist(s)
 
-    s.mytasklist = create_tasklist(s)
+    s.mytasklist = create_tasklist(s, true)
 
     s.mywibox = awful.wibar({
         position = "top",
@@ -59,7 +59,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.mytaglist,
             s.mypromptbox,
         },
-        s.mytasklist,
+        s.mytasklist.widget,
         right,
     }
 end)

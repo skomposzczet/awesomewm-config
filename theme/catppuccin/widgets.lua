@@ -121,6 +121,11 @@ local theme = {
         },
     },
 
+    some_text = {
+        text_normal = colors.macchiato.overlay2,
+        text_hover = colors.macchiato.subtext1,
+    },
+
     taglist = {
         color = colors.macchiato.surface1,
     },
